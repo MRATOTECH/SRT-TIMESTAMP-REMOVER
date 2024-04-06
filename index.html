@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>Subtitle Clear</title>
+<script language = "JavaScript">
+function TryClear(){
+Length = document.all.TextFields.Input.value.length;
+FirstSumbol = true;
+CancelExit =false;
+var strOut = "";
+
+for(i=0; i<Length; i++){
+ch = document.all.TextFields.Input.value.substring(i,i+1);
+if(FirstSumbol){
+if(ch >= '0' && ch <= '9' ){
+CancelExit =true;
+FirstSumbol = false;
+}
+else {
+CancelExit =false;
+strOut += '\n';
+FirstSumbol = false;
+}
+}
+if(ch == '\n'){
+FirstSumbol = true;
+}
+
+if((!CancelExit) && (!FirstSumbol)){
+strOut += ch;
+document.all.TextFields.Output.value = i;
+}
+else continue;
+}
+document.all.TextFields.Output.value = strOut;
+return;
+}
+
+</script>
+</head>
+<body>
+<form name="TextFields">
+<TEXTAREA type="text" cols="67" rows="10" name="Input" value="" ></TEXTAREA>
+<TEXTAREA type="text" cols="67" rows="10" name="Output" value="" ></TEXTAREA>
+<input type="button" value="Go!" onClick="TryClear();"></input>
+</form>
+</body>
+</html>
